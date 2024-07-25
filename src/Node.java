@@ -40,4 +40,16 @@ public class Node {
     public void setName(String s) {
         this.name = s;
     }
+
+    public int getValue(Node n){
+        return this.value;
+    }
+
+    public boolean equals(Node n2){
+        if (this.value == getValue(n2)){
+            return true;
+        } 
+        return false;
+
+    }
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class driver extends JFrame {
+public class Driver extends JFrame {
 
     private List<Event> events = new ArrayList<>();
     private JList<Event> eventList;
@@ -16,10 +16,10 @@ public class driver extends JFrame {
     Screen s = new Screen();
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new driver().setVisible(true));
+        SwingUtilities.invokeLater(() -> new Driver().setVisible(true));
     }
 
-    public driver() {
+    public Driver() {
         setTitle("Sorting Algorithms");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 700);
@@ -27,10 +27,7 @@ public class driver extends JFrame {
     }
 
     private void initComponents() {
-        
-        // Icon myImgIcon = new ImageIcon(this.getClass().getResource("d40.gif"));
-        // JLabel imageLbl = new JLabel(myImgIcon);
-        // imageLbl.setBounds(0, 0, 500,500); // You can use your own values
+
         listModel = new DefaultListModel<>();
         eventList = new JList<>(listModel);
         addButton = new JButton("Add Event");
@@ -48,11 +45,11 @@ public class driver extends JFrame {
         controlPanel.add(deleteButton);
 
         add(aPan, BorderLayout.NORTH);
-        //add(new JScrollPane(eventList), BorderLayout.SOUTH);
         add(controlPanel, BorderLayout.SOUTH);
 
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                
                 Event newEvent = createNewEvent();
                 if (newEvent != null) {
                     events.add(newEvent);
@@ -82,9 +79,8 @@ public class driver extends JFrame {
             }
         });
 
-        s = new Screen();
-        add(s);
-
+        // s = new Screen();
+        // add(s);
     }
 
     private Event createNewEvent() {
