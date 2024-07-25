@@ -8,11 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Driver extends JFrame {
-
-    private List<Event> events = new ArrayList<>();
-    private JList<Event> eventList;
-    private DefaultListModel<Event> listModel;
-    private JButton addButton, editButton, deleteButton;
+    private JButton bubbleSortButton, selectionSortButton, insertionSortButton;
     Screen s = new Screen();
 
     public static void main(String[] args) {
@@ -22,17 +18,15 @@ public class Driver extends JFrame {
     public Driver() {
         setTitle("Sorting Algorithms");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 700);
+        setSize(500, 300);
         initComponents();
     }
 
     private void initComponents() {
 
-        listModel = new DefaultListModel<>();
-        eventList = new JList<>(listModel);
-        addButton = new JButton("Add Event");
-        editButton = new JButton("Edit Event");
-        deleteButton = new JButton("Delete Event");
+        bubbleSortButton = new JButton("BubbleSort");
+        selectionSortButton = new JButton("Selection Sort");
+        insertionSortButton = new JButton("Insertion Sort");
 
         setLayout(new BorderLayout());
         JPanel aPan = new JPanel();
@@ -40,120 +34,35 @@ public class Driver extends JFrame {
 
         JPanel controlPanel = new JPanel(new FlowLayout());
 
-        controlPanel.add(addButton);
-        controlPanel.add(editButton);
-        controlPanel.add(deleteButton);
+        controlPanel.add(bubbleSortButton);
+        controlPanel.add(selectionSortButton);
+        controlPanel.add(insertionSortButton);
 
         add(aPan, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.SOUTH);
 
-        addButton.addActionListener(new ActionListener() {
+        bubbleSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-                Event newEvent = createNewEvent();
-                if (newEvent != null) {
-                    events.add(newEvent);
-                    updateEventList();
+                System.out.println("bubble sort button pressed");
 
-                }
             }
         });
 
-        editButton.addActionListener(new ActionListener() {
+        selectionSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Event selectedEvent = eventList.getSelectedValue();
-                if (selectedEvent != null) {
-                    editEvent(selectedEvent);
-                    updateEventList();
-                }
+                System.out.println("selection sort button pressed");
+
             }
         });
 
-        deleteButton.addActionListener(new ActionListener() {
+        insertionSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Event selectedEvent = eventList.getSelectedValue();
-                if (selectedEvent != null) {
-                    events.remove(selectedEvent);
-                    updateEventList();
-                }
+                System.out.println("insertion sort button pressed");
+
             }
         });
 
-        // s = new Screen();
-        // add(s);
-    }
-
-    private Event createNewEvent() {
-        String name = JOptionPane.showInputDialog(this, "Enter event name:");
-        if (name != null && !name.trim().isEmpty()) {
-            String dateStr = JOptionPane.showInputDialog(this, "Enter event date (yyyy-MM-dd):");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Date date = dateFormat.parse(dateStr);
-                return new Event(name, date);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Invalid date format. Event not added.");
-            }
-        }
-        return null;
-    }
-
-    private void editEvent(Event event) {
-        String newName = JOptionPane.showInputDialog(this, "Enter new event name:", event.getName());
-        if (newName != null && !newName.trim().isEmpty()) {
-            String newDateStr = JOptionPane.showInputDialog(this, "Enter new event date (yyyy-MM-dd):",
-                    event.getDateStr());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                Date newDate = dateFormat.parse(newDateStr);
-                event.setName(newName);
-                event.setDate(newDate);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Invalid date format. Event not edited.");
-            }
-        }
-    }
-
-    private void updateEventList() {
-        listModel.clear();
-        for (Event event : events) {
-            listModel.addElement(event);
-        }
-    }
-}
-
-class Event {
-    private String name;
-    private Date date;
-
-    public Event(String name, Date date) {
-        this.name = name;
-        this.date = date;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getDateStr() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        return dateFormat.format(date);
-    }
-
-    @Override
-    public String toString() {
-        return "Event: " + name + " Date: " + getDateStr();
+        s = new Screen();
+        add(s);
     }
 }
