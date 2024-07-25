@@ -2,14 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class Driver extends JFrame {
     private JButton bubbleSortButton, selectionSortButton, insertionSortButton;
-    Screen s = new Screen();
+    private Screen s;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Driver().setVisible(true));
@@ -40,29 +36,31 @@ public class Driver extends JFrame {
 
         add(aPan, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.SOUTH);
+        s = new Screen();
+        add(s, BorderLayout.CENTER);
 
         bubbleSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("bubble sort button pressed");
-
+            
+                //s.repaint();
             }
         });
 
         selectionSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("selection sort button pressed");
-
+                //s.setBackground(Color.DARK_GRAY);
+                //s.repaint();
             }
         });
 
         insertionSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("insertion sort button pressed");
-
+                //s.setBackground(Color.RED);
+                //s.repaint();
             }
         });
-
-        s = new Screen();
-        add(s);
     }
 }

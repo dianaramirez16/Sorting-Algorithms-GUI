@@ -20,18 +20,16 @@ public class Screen extends JPanel {
             x1 += 40;
         }
 
-       
-
-        repaint();
     }
 
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
         g.setColor(Color.MAGENTA);
         g.setFont(new Font("Monospaced", Font.PLAIN, 20));
 
         for (Node n : nodes) {
             n.paint(g);
             System.out.println(n);
+
         }
     }
 

@@ -25,7 +25,7 @@ public class Node {
         g.setColor(Color.MAGENTA);
         g.drawRect(x, y, size, size);
         g.drawString(name, center_x, center_y);
-
+        
     }
 
     public String toString() {
