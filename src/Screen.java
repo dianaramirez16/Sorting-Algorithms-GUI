@@ -4,33 +4,31 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Screen extends JPanel {
-    private ArrayList<Node> nodes;
+    
     private ArrayList<Node> printlist;
 
     public Screen() {
         ArrayList<Integer> unsorted = new ArrayList<>();
-        nodes = new ArrayList<>();
-        printlist = new ArrayList<>();
-        
         fill_List(unsorted); //set random values
+        printlist = formatNodes(unsorted);
         
+        System.out.println("unsorted list: " + unsorted);
+        System.out.println("printlist: " + printlist);
 
 
-        int x1 = 20;
-        int y1 = 20;
-
-        for (int i = 1; i < 6; i++) {
-            nodes.add(new Node(unsorted.get(i - 1), i, x1, y1));
-            x1 += 40;
-            printlist.add(nodes.get(i-1));
-        }
-        y1+=40;
     }
 
-    public ArrayList<Node> formatNodes(ArrayList<Node> a){
+    public ArrayList<Node> formatNodes(ArrayList<Integer> a){
+        ArrayList<Node> nodes = new ArrayList<>();
+        int x1 = 20;
+        int y1 = a.size()%5*20;
+
+        for (int i = 1; i < 6; i++) {
+            nodes.add(new Node(a.get(i - 1), i, x1, y1));
+            x1 += 40;
+        }
         
-        
-        return a;
+        return nodes;
     }
 
     public void paintComponent(Graphics g) {
@@ -57,7 +55,7 @@ public class Screen extends JPanel {
 
     }
 
-    public void bubbleSort() {
+    public void bubbleSort(ArrayList<Node> nodes) {
         int n = nodes.size();
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
@@ -68,11 +66,10 @@ public class Screen extends JPanel {
                     nodes.set(j + 1, temp);
                 }
             }
-            printlist.add(nodes.get(i));
         }
     }
 
-    public void selectionSort() {
+    public void selectionSort(ArrayList<Node> nodes) {
         int n = nodes.size();
         for (int i = 0; i < n - 1; i++) {
             int minIdx = i;
@@ -88,7 +85,7 @@ public class Screen extends JPanel {
         }
     }
 
-    public void insertionSort() {
+    public void insertionSort(ArrayList<Node> nodes) {
         int n = nodes.size();
         for (int i = 1; i < n; i++) {
             Node key = nodes.get(i);
