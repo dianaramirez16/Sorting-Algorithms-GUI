@@ -21,6 +21,7 @@ public class Node {
         this.name = "" + value;
     }
 
+    
     public void paint(Graphics g) {
         g.setColor(Color.MAGENTA);
         g.drawRect(x, y, size, size);

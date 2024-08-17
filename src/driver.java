@@ -41,9 +41,10 @@ public class Driver extends JFrame {
 
         bubbleSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 System.out.println("bubble sort button pressed");
-            
-                //s.repaint();
+                s.bubbleSort();
+                s.repaint();
             }
         });
 
