@@ -5,23 +5,31 @@ import java.util.Random;
 
 public class Screen extends JPanel {
     
-    private ArrayList<Node> printlist;
+    public ArrayList<Node> printlist;
 
     public Screen() {
         ArrayList<Integer> unsorted = new ArrayList<>();
         fill_List(unsorted); //set random values
         printlist = formatNodes(unsorted);
-        
+        //printlist receives first row with y1=20
         System.out.println("unsorted list: " + unsorted);
         System.out.println("printlist: " + printlist);
-
+        /*
+        if (method.equals("bubbleSort")){
+            bubbleSort(printlist);
+            System.out.println("bubble sort button pressed");
+        } else if (method.equals("selectionSort")){
+            selectionSort(printlist);
+        } else {
+            insertionSort(printlist);
+        }*/
 
     }
 
     public ArrayList<Node> formatNodes(ArrayList<Integer> a){
         ArrayList<Node> nodes = new ArrayList<>();
         int x1 = 20;
-        int y1 = a.size()%5*20;
+        int y1 = 20;
 
         for (int i = 1; i < 6; i++) {
             nodes.add(new Node(a.get(i - 1), i, x1, y1));
@@ -40,7 +48,6 @@ public class Screen extends JPanel {
 
         for (Node n : printlist) {
             n.paint(g);
-            System.out.print(n.value +" ");
             
         }
     }
@@ -64,8 +71,11 @@ public class Screen extends JPanel {
                     Node temp = nodes.get(j);
                     nodes.set(j, nodes.get(j + 1));
                     nodes.set(j + 1, temp);
+                    System.out.println("swapped " + nodes.get(i) +"and " + nodes.get(j));
                 }
+
             }
+
         }
     }
 

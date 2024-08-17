@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class Driver extends JFrame {
     private JButton bubbleSortButton, selectionSortButton, insertionSortButton;
     private Screen s;
+    public String m = "";
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Driver().setVisible(true));
@@ -19,7 +20,7 @@ public class Driver extends JFrame {
     }
 
     private void initComponents() {
-
+        
         bubbleSortButton = new JButton("BubbleSort");
         selectionSortButton = new JButton("Selection Sort");
         insertionSortButton = new JButton("Insertion Sort");
@@ -36,15 +37,16 @@ public class Driver extends JFrame {
 
         add(aPan, BorderLayout.NORTH);
         add(controlPanel, BorderLayout.SOUTH);
+        
         s = new Screen();
         add(s, BorderLayout.CENTER);
 
         bubbleSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                System.out.println("bubble sort button pressed");
-                s.bubbleSort();
+                
+                s.bubbleSort(s.printlist);
                 s.repaint();
+                
             }
         });
 
@@ -53,6 +55,7 @@ public class Driver extends JFrame {
                 System.out.println("selection sort button pressed");
                 //s.setBackground(Color.DARK_GRAY);
                 //s.repaint();
+                m="selectionSort";
             }
         });
 
@@ -61,7 +64,9 @@ public class Driver extends JFrame {
                 System.out.println("insertion sort button pressed");
                 //s.setBackground(Color.RED);
                 //s.repaint();
+                m="insertionSort";
             }
         });
+
     }
 }
