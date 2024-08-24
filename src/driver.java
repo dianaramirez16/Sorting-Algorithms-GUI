@@ -39,11 +39,11 @@ public class Driver extends JFrame {
         add(controlPanel, BorderLayout.SOUTH);
         
         s = new Screen();
-        add(s, BorderLayout.CENTER);
+        
 
         bubbleSortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                System.out.println("bubble sort pressed");
                 s.bubbleSort(s.printlist);
                 s.repaint();
                 
@@ -67,6 +67,6 @@ public class Driver extends JFrame {
                 m="insertionSort";
             }
         });
-
+        add(s, BorderLayout.CENTER);
     }
 }
